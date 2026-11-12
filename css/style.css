@@ -1,0 +1,115 @@
+/* ===== RESET ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ===== THEME COLORS ===== */
+:root {
+  --bg-dark:       #0d1f1a;
+  --bg-forest:     #142b24;
+  --emerald:       #10b981;
+  --teal:          #14b8a6;
+  --copper:        #b87333;
+  --champagne:     #f7e7ce;
+  --cream:         #f5f0e6;
+  --muted-green:   #3d6b5a;
+}
+
+/* ===== BODY ===== */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at 50% 0%, #142b24 0%, #0d1f1a 70%);
+  color: var(--cream);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--champagne);
+}
+
+/* ===== PAGE SYSTEM ===== */
+.page {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.96);
+  transition: opacity 0.8s ease, transform 0.8s ease, visibility 0.8s;
+  z-index: 1;
+  overflow-y: auto;
+}
+
+.page.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  z-index: 10;
+}
+
+/* ===== FIREFLIES ===== */
+.fireflies {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.firefly {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--champagne);
+  box-shadow: 0 0 8px 2px var(--champagne);
+  animation: float 8s ease-in-out infinite, twinkle 2s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50%      { transform: translateY(-30px) translateX(15px); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50%      { opacity: 1; }
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 14px 32px;
+  border: 1px solid var(--copper);
+  border-radius: 50px;
+  background: linear-gradient(135deg, rgba(184,115,51,0.2), rgba(16,185,129,0.15));
+  color: var(--champagne);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 20px rgba(247,231,206,0.1);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(247,231,206,0.3);
+  border-color: var(--champagne);
+}
+
+@media (max-width: 768px) {
+  #page-memories {
+    justify-content: flex-start;
+  }
+
+  #page-memories .scrapbook-container {
+    flex: 0 0 auto;
+    margin-block: auto;
+  }
+}

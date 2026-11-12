@@ -1,0 +1,206 @@
+.reveal-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  z-index: 2;
+  position: relative;
+}
+
+/* ===== TITLE ===== */
+.reveal-title {
+  font-size: 2.6rem;
+  color: var(--champagne);
+  letter-spacing: 1px;
+  text-shadow: 0 0 25px rgba(247,231,206,0.5), 0 0 45px rgba(16,185,129,0.3);
+  animation: titlePulse 3s ease-in-out infinite;
+}
+
+.reveal-title .name {
+  color: var(--emerald);
+  text-shadow: 0 0 20px rgba(16,185,129,0.7);
+}
+
+@keyframes titlePulse {
+  0%, 100% { transform: scale(1);    filter: brightness(1); }
+  50%      { transform: scale(1.03); filter: brightness(1.15); }
+}
+
+/* ===== PHOTO ===== */
+.photo-frame {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  padding: 6px;
+  background: linear-gradient(135deg, var(--copper), var(--emerald), var(--teal), var(--copper));
+  box-shadow: 0 0 30px rgba(184,115,51,0.5), 0 0 60px rgba(16,185,129,0.25);
+  animation: floatPhoto 4s ease-in-out infinite;
+}
+
+.reveal-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--bg-dark);
+}
+
+@keyframes floatPhoto {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+.reveal-sub {
+  font-size: 0.95rem;
+  opacity: 0.75;
+  letter-spacing: 1px;
+  color: var(--cream);
+}
+
+/* ===== BALLOONS ===== */
+.balloons {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.balloon {
+  position: absolute;
+  width: 60px;
+  height: 76px;
+  border-radius: 50% 50% 50% 50% / 55% 55% 45% 45%;
+  cursor: pointer;
+  pointer-events: auto;
+  box-shadow: inset -8px -8px 15px rgba(0,0,0,0.25), 0 0 20px rgba(247,231,206,0.25);
+  transition: transform 0.25s ease, opacity 0.6s ease;
+  opacity: 0;
+  animation: fadeInBalloon 0.8s ease forwards;
+}
+
+.balloon::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 30px;
+  background: rgba(247,231,206,0.4);
+}
+
+.balloon::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 14px;
+  height: 18px;
+  background: rgba(255,255,255,0.4);
+  border-radius: 50%;
+  filter: blur(4px);
+}
+
+.balloon:hover {
+  transform: scale(1.08);
+}
+
+@keyframes fadeInBalloon {
+  0%   { opacity: 0; transform: scale(0.5); }
+  60%  { opacity: 1; transform: scale(1.06); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.balloon.popped {
+  animation: pop 0.35s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes pop {
+  0%   { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(0);    opacity: 0; }
+}
+
+/* ===== WISH POPUP ===== */
+.wish-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.7);
+  background: rgba(20,43,36,0.95);
+  border: 1px solid var(--copper);
+  border-radius: 20px;
+  padding: 24px 36px;
+  box-shadow: 0 0 40px rgba(247,231,206,0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  z-index: 20;
+  max-width: 320px;
+}
+
+.wish-popup.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.wish-text {
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  color: var(--champagne);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 420px) {
+  .reveal-title { font-size: 1.7rem; }
+  .photo-frame { width: 200px; height: 200px; }
+  .balloon { width: 45px; height: 58px; }
+}
+
+/* ===== HIDDEN BUTTON (until all balloons popped) ===== */
+.btn-slot {
+  min-height: 60px;   /* button ki jagah reserved, layout shift nahi hoga */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Line — initially visible */
+.reveal-sub {
+  position: absolute;
+  font-size: 0.95rem;
+  opacity: 0.75;
+  letter-spacing: 1px;
+  color: var(--cream);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-sub.hide {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+#toScratchBtn {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(15px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+#toScratchBtn.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  animation: btnGlow 2s ease-in-out infinite;
+}
+
+@keyframes btnGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(247,231,206,0.15); }
+  50%      { box-shadow: 0 0 35px rgba(247,231,206,0.45); }
+}

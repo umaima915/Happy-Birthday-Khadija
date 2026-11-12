@@ -1,0 +1,176 @@
+#page-wish {
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, rgba(20, 43, 36, 0.78), rgba(13, 31, 26, 0.96));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wish-card-scene {
+  width: min(95vw, 600px);
+  text-align: center;
+  z-index: 2;
+}
+
+.wish-card-heading {
+  margin-bottom: 20px;
+  color: var(--champagne);
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: clamp(1.3rem, 4vw, 1.7rem);
+  text-shadow: 0 0 18px rgba(247, 231, 206, 0.35);
+}
+
+.envelope {
+  position: relative;
+  width: min(90vw, 500px);
+  height: clamp(320px, 70vw, 380px);
+  margin: 0 auto;
+  perspective: 1000px;
+}
+
+.envelope-back,
+.envelope-pocket {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--copper);
+  border-radius: 12px;
+  background: linear-gradient(145deg, #25483b, #142b24 75%);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.4), 0 0 28px rgba(184, 115, 51, 0.2);
+}
+
+.envelope-back::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(140deg, transparent 49.5%, rgba(184, 115, 51, 0.35) 50%, transparent 50.5%),
+    linear-gradient(220deg, transparent 49.5%, rgba(184, 115, 51, 0.35) 50%, transparent 50.5%);
+  border-radius: inherit;
+}
+
+.envelope-pocket {
+  inset: auto 0 0;
+  height: 58%;
+  z-index: 3;
+  border-top: 0;
+  clip-path: polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
+  background: linear-gradient(145deg, #1c3a30, #10251f);
+}
+
+.urdu-wish-card {
+  position: absolute;
+  z-index: 2;
+  left: 6%;
+  right: 6%;
+  bottom: 15px;
+  min-height: auto; /* Height fix ki taake upar se bahar na jaye */
+  padding: 20px 20px 100px; /* Padding adjust ki */
+  border: 1px solid rgba(184, 115, 51, 0.7);
+  border-radius: 10px;
+  background: linear-gradient(145deg, #fff8ec, #f2dfc4);
+  color: #263b31;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.28);
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: clamp(0.9rem, 2.8vw, 1.05rem); /* Text thoda chhota kiya */
+  line-height: 1.9; /* Line spacing kam ki */
+  opacity: 0;
+  transform: translateY(35%);
+  transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease;
+}
+
+.wish-card-greeting,
+.wish-card-signoff {
+  color: #9a5d2a;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.wish-card-scene.opened .urdu-wish-card {
+  opacity: 1;
+  transform: translateY(-12%); /* Sirf 12% upar shift hoga */
+}
+
+.stamp-button {
+  display: grid;
+  place-items: center;
+  width: 70px;
+  height: 70px;
+  padding: 0;
+  border: 2px dashed rgba(255, 239, 213, 0.88);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #d99a62, #9d5429 72%);
+  color: #fff4e2;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35), inset 0 0 0 4px rgba(255, 239, 213, 0.15);
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  cursor: pointer;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.stamp-button:hover {
+  transform: rotate(-8deg) scale(1.07);
+  filter: brightness(1.12);
+}
+
+.envelope-seal {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  top: 59%;
+  transform: translate(-50%, -50%);
+}
+
+.envelope-seal:hover {
+  transform: translate(-50%, -50%) rotate(-8deg) scale(1.07);
+}
+
+.wish-card-scene.opened .envelope-seal {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.card-continue {
+  position: absolute;
+  bottom: 30px; /* Isko -35px kar do taake bahar nikal kar noke par aaye */
+  left: 50%;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 12px);
+  transition: opacity 0.4s ease 0.65s, transform 0.4s ease 0.65s;
+}
+
+.wish-card-scene.opened .card-continue {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+.envelope-hint {
+  margin-top: 25px;
+  color: var(--cream);
+  opacity: 0.78;
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 0.95rem;
+}
+
+.wish-card-scene.opened .envelope-hint {
+  opacity: 0;
+}
+
+@media (max-width: 420px) {
+  .wish-card-heading { margin-bottom: 15px; }
+  .envelope { width: 92vw; height: 320px; }
+  .urdu-wish-card {
+    padding: 15px 15px 90px;
+    line-height: 1.8;
+    font-size: 0.9rem;
+  }
+  .stamp-button { width: 62px; height: 62px; font-size: 0.72rem; }
+  .wish-card-scene.opened .urdu-wish-card { transform: translateY(-10%); }
+  .card-continue {
+    bottom: 30px; /* Mobile pe thoda kam */
+  }
+}

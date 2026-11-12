@@ -1,0 +1,139 @@
+.scratch-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: auto 0;
+  padding: 10px;
+  width: 100%;
+}
+
+.scratch-title {
+  font-size: 1.6rem;
+  color: var(--champagne);
+  text-shadow: 0 0 20px rgba(247,231,206,0.4);
+}
+
+.scratch-sub {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  color: var(--cream);
+  letter-spacing: 1px;
+}
+
+/* ===== WRAPPER ===== */
+.scratch-wrapper {
+  position: relative;
+  width: 380px;
+  height: 520px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid var(--copper);
+  box-shadow: 0 0 40px rgba(184,115,51,0.4), 0 0 80px rgba(16,185,129,0.2);
+  transition: transform 0.8s ease, box-shadow 0.8s ease;
+}
+
+.scratch-wrapper.revealed {
+  transform: scale(1.03);
+  box-shadow: 0 0 60px rgba(247,231,206,0.6), 0 0 100px rgba(16,185,129,0.4);
+}
+
+.scratch-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#scratchCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 380px;
+  height: 520px;
+  cursor: grab;
+  touch-action: none;
+}
+
+#scratchCanvas:active {
+  cursor: grabbing;
+}
+
+/* ===== NEXT BUTTON ===== */
+.next-btn {
+  position: relative;
+  z-index: 3;
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(15px);
+  transition: opacity 0.8s ease, transform 0.8s ease, visibility 0.8s ease;
+  margin-top: 10px;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+}
+
+.next-btn.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  animation: btnGlow 2s ease-in-out infinite;
+}
+
+.scratch-title,
+.scratch-sub {
+  transition: opacity 0.6s ease;
+  min-height: 1px;
+}
+
+.scratch-title.hide,
+.scratch-sub.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#page-scratch {
+  justify-content: center; /* Center align */
+  padding: 16px;
+  overflow-y: auto;
+}
+
+@keyframes btnGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(247,231,206,0.15); }
+  50%      { box-shadow: 0 0 35px rgba(247,231,206,0.45); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .scratch-wrapper {
+    width: 320px;
+    height: 440px;
+  }
+  #scratchCanvas {
+    width: 320px;
+    height: 440px;
+  }
+}
+
+@media (max-width: 420px) {
+  .scratch-title { font-size: 1.3rem; }
+  
+  /* Mobile ke liye size chhota kiya taake button bhi fit ho jaye */
+  .scratch-wrapper { 
+    width: 250px; 
+    height: 350px; 
+  }
+  #scratchCanvas   { 
+    width: 250px; 
+    height: 350px; 
+  }
+  
+  .scratch-container { 
+    transform: none; /* Pehle isme translateY tha jo masla kar raha tha */
+    gap: 16px;
+  }
+}

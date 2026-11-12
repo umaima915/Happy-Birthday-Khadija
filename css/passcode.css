@@ -1,0 +1,131 @@
+.passcode-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  z-index: 2;
+}
+
+.passcode-title {
+  font-size: 2.2rem;
+  color: var(--champagne);
+  text-shadow: 0 0 20px rgba(247,231,206,0.4);
+  letter-spacing: 1px;
+}
+
+.passcode-sub {
+  font-size: 0.95rem;
+  color: var(--cream);
+  opacity: 0.7;
+  letter-spacing: 1px;
+}
+
+/* ===== DOTS ===== */
+.passcode-dots {
+  display: flex;
+  gap: 18px;
+  margin: 10px 0;
+}
+
+.dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--copper);
+  background: transparent;
+  transition: all 0.25s ease;
+}
+
+.dot.filled {
+  background: var(--champagne);
+  box-shadow: 0 0 12px var(--champagne);
+  border-color: var(--champagne);
+}
+
+/* ===== KEYPAD ===== */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 70px);
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.key {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 1px solid var(--muted-green);
+  background: rgba(20, 43, 36, 0.6);
+  color: var(--cream);
+  font-size: 1.4rem;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(6px);
+}
+
+.key:hover {
+  border-color: var(--emerald);
+  color: var(--champagne);
+  box-shadow: 0 0 15px rgba(16,185,129,0.3);
+}
+
+.key:active {
+  transform: scale(0.92);
+}
+
+.key-clear {
+  color: var(--copper);
+  border-color: var(--copper);
+}
+
+.key-enter {
+  color: var(--emerald);
+  border-color: var(--emerald);
+}
+
+/* ===== ERROR ===== */
+.passcode-error {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+  letter-spacing: 0.5px;
+}
+
+.passcode-error.show {
+  opacity: 1;
+}
+
+/* ===== SHAKE ANIMATION ===== */
+.shake {
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-10px); }
+  40%      { transform: translateX(10px); }
+  60%      { transform: translateX(-8px); }
+  80%      { transform: translateX(8px); }
+}
+
+/* ===== SUCCESS GLOW ===== */
+.success-glow {
+  animation: successGlow 1s ease forwards;
+}
+
+@keyframes successGlow {
+  0%   { transform: scale(1);    filter: brightness(1); }
+  50%  { transform: scale(1.05); filter: brightness(1.4); }
+  100% { transform: scale(1.2);  filter: brightness(2); opacity: 0; }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 420px) {
+  .passcode-title { font-size: 1.6rem; }
+  .keypad { grid-template-columns: repeat(3, 60px); gap: 10px; }
+  .key { width: 60px; height: 60px; font-size: 1.2rem; }
+  .dot { width: 14px; height: 14px; }
+}
