@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birthday Surprise 🎁</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&family=Caveat:wght@600&display=swap&family=Noto+Nastaliq+Urdu:wght@400;500"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/passcode.css">
+    <link rel="stylesheet" href="css/cake.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/scratch.css">
+    <link rel="stylesheet" href="css/memories.css">
+    <link rel="stylesheet" href="css/wish.css">
+</head>
+
+<body>
+
+    <!-- Fireflies background (har page pe) -->
+    <div class="fireflies" id="fireflies"></div>
+
+    <!-- Page 1: Passcode -->
+    <section class="page active" id="page-passcode">
+        <div class="passcode-container">
+            <h1 class="passcode-title">Unlock the Surprise 🎁</h1>
+            <p class="passcode-sub">Enter the secret code</p>
+
+            <div class="passcode-dots" id="passcodeDots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+
+            <div class="keypad" id="keypad">
+                <button class="key" data-key="1">1</button>
+                <button class="key" data-key="2">2</button>
+                <button class="key" data-key="3">3</button>
+                <button class="key" data-key="4">4</button>
+                <button class="key" data-key="5">5</button>
+                <button class="key" data-key="6">6</button>
+                <button class="key" data-key="7">7</button>
+                <button class="key" data-key="8">8</button>
+                <button class="key" data-key="9">9</button>
+                <button class="key key-clear" data-key="clear">C</button>
+                <button class="key" data-key="0">0</button>
+                <button class="key key-enter" data-key="enter">✓</button>
+            </div>
+
+            <p class="passcode-error" id="passcodeError">Wrong code, try again!</p>
+        </div>
+    </section>
+
+    <!-- Page 2: Cake -->
+    <section class="page" id="page-cake">
+        <div class="cake-container">
+            <h2 class="cake-title">Make a Wish ✨</h2>
+            <p class="cake-sub">Blow the candles to unlock the magic</p>
+
+            <div class="cake-wrapper">
+                <!-- Cake first (background layers) -->
+                <div class="cake">
+                    <div class="layer layer-top"></div>
+                    <div class="layer layer-mid"></div>
+                    <div class="layer layer-bottom"></div>
+                    <div class="plate"></div>
+                </div>
+
+                <!-- Candles on top of cake -->
+                <div class="candles" id="candles">
+                    <div class="candle">
+                        <div class="flame"></div>
+                        <div class="wick"></div>
+                        <div class="stick"></div>
+                        <div class="smoke"></div>
+                        <div class="smoke"></div>
+                        <div class="smoke"></div>
+                    </div>
+                    <div class="candle">
+                        <div class="flame"></div>
+                        <div class="wick"></div>
+                        <div class="stick"></div>
+                        <div class="smoke"></div>
+                        <div class="smoke"></div>
+                        <div class="smoke"></div>
+                    </div>
+                    <div class="candle">
+                        <div class="flame"></div>
+                        <div class="wick"></div>
+                        <div class="stick"></div>
+                        <div class="smoke"></div>
+                        <div class="smoke"></div>
+                        <div class="smoke"></div>
+                    </div>
+                    <div class="candle">
+                        <div class="flame"></div>
+                        <div class="wick"></div>
+                        <div class="stick"></div>
+                        <div class="smoke"></div>
+                        <div class="smoke"></div>
+                        <div class="smoke"></div>
+                    </div>
+                    <div class="candle">
+                        <div class="flame"></div>
+                        <div class="wick"></div>
+                        <div class="stick"></div>
+                        <div class="smoke"></div>
+                        <div class="smoke"></div>
+                        <div class="smoke"></div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn blow-btn" id="blowBtn">Blow the Candles 💨</button>
+        </div>
+    </section>
+
+    <!-- Page 3: Reveal -->
+    <section class="page" id="page-reveal">
+        <div class="reveal-container">
+            <h1 class="reveal-title">
+                Happy Birthday <span class="name">Khadija</span>! 🪭
+            </h1>
+
+            <div class="photo-frame">
+                <img src="assets/her-photo.jpg" alt="Birthday Star" class="reveal-photo">
+            </div>
+
+            <div class="balloons" id="balloons"></div>
+
+            <!-- Wish popup -->
+            <div class="wish-popup" id="wishPopup">
+                <p class="wish-text" id="wishText"></p>
+            </div>
+            <div class="btn-slot">
+                <p class="reveal-sub" id="revealSub">Tap the balloons for a wish 💝</p>
+                <button class="btn" id="toScratchBtn">Next ➡️</button>
+            </div>
+        </div>
+    </section>
+    <!-- Urdu wish card -->
+    <section class="page" id="page-wish">
+        <div class="wish-card-scene">
+            <h2 class="wish-card-heading" lang="ur" dir="rtl">
+                تمہارے لیے ایک چھوٹی سی دعا 💌
+            </h2>
+
+            <div class="envelope">
+                <div class="envelope-back"></div>
+
+                <article class="urdu-wish-card" lang="ur" dir="rtl">
+                    <p class="wish-card-greeting">پیاری خدیجہ،</p>
+                    <p>
+                       سالگرہ بہت مبارک ہو! آج کا دن بہت خاص ہے، تو اسے خوب مزے سے مناؤ! 
+                        اللہ تمہیں ہمیشہ خوش رکھے، تم بہت ترقی کرو تاکہ مجھے ٹریٹ دے سکو (ہی ہی )، 
+                        اور تمہاری ہر چھوٹی بڑی خواہش پوری ہو۔ 
+                        ہمیشہ ایسی ہی پاگل، مسکراتی اور چمکتی رہو۔ 
+                        میں ہوں نا تمہارے ساتھ ہمیشہ! 💖
+                    </p>
+                    <p class="wish-card-signoff">ڈھیروں محبت کے ساتھ ❤️</p>
+
+                    <button class="stamp-button card-continue" id="toScratchFromWish" type="button"
+                        aria-label="اگلا تحفہ کھولیں">
+                        <span>اگلا<br>تحفہ</span>
+                    </button>
+                </article>
+
+                <div class="envelope-pocket"></div>
+
+                <button class="stamp-button envelope-seal" id="openWishCard" type="button" aria-label="خط کھولیں">
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 4: Scratch -->
+    <section class="page" id="page-scratch">
+        <div class="scratch-container">
+            <h2 class="scratch-title" id="scratchTitle">Scratch to Reveal ✨</h2>
+
+            <div class="scratch-wrapper" id="scratchWrapper">
+                <img src="assets/scratch-image.jpg" alt="Reveal" class="scratch-image">
+                <canvas id="scratchCanvas"></canvas>
+            </div>
+
+            <button class="btn next-btn" id="toMemoriesBtn">Our Memories</button>
+        </div>
+    </section>
+
+    <!-- Page 5: Memory Wall -->
+    <section class="page" id="page-memories">
+        <div class="scrapbook-container">
+
+            <div class="book-scene">
+                <!-- CLOSED BOOK COVER -->
+                <div class="book-cover" id="bookCover">
+                    <div class="cover-inner">
+                        <h3 class="cover-title">یادوں کا خزانہ</h3>
+                        <p class="cover-names">Khaima 💖</p>
+                    </div>
+                    <button class="open-arrow" id="openArrow">›</button>
+                </div>
+
+                <!-- OPEN SCRAPBOOK -->
+                <div class="scrapbook hidden" id="scrapbook">
+                    <div class="spiral-binding" id="spiralBinding"></div>
+
+                    <div class="page-left" id="pageLeft">
+                        <img src="" alt="Memory" id="memoryPhoto">
+                    </div>
+
+                    <div class="page-right" id="pageRight">
+                        <div class="page-content">
+                            <p class="memory-date" id="memoryDate"></p>
+                            <h3 class="memory-title" id="memoryTitle"></h3>
+                            <p class="memory-desc" id="memoryDesc"></p>
+                        </div>
+                    </div>
+
+                    <div class="flip-page" id="flipPage"></div>
+                </div>
+            </div>
+
+            <!-- Controls (only after book opens) -->
+            <div class="scrapbook-controls hidden" id="controls">
+                <button class="btn nav-btn" id="prevBtn">‹</button>
+                <span class="page-counter" id="pageCounter">1 / 1</span>
+                <button class="btn nav-btn" id="nextBtn">›</button>
+            </div>
+
+            <div class="end-message" id="endMessage">
+                <p>✨ Many more memeories to build together... ✨</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confetti library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+    <script src="js/passcode.js"></script>
+    <script src="js/cake.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="js/scratch.js"></script>
+    <script src="js/memories.js"></script>
+    <script src="js/wish.js"></script>
+</body>
+
+</html>
